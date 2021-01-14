@@ -4,8 +4,8 @@
 알고리즘 스터디를 진행한다.
 
 ## 업로드 순서
-* git checkout -b '브랜치명'
 * git init
+* git checkout -b '브랜치명'
 * git add .
 * git commit -m "커밋이름"
 * git remote add origin https://github.com/seilylook/Algorithm.git
