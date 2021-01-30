@@ -1,5 +1,4 @@
 # Algorithm
-
 ## 업로드 순서
 * git init
 * git checkout -b '브랜치명'
