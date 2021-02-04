@@ -4,7 +4,7 @@ public class solution {
 
     public static int[][] matrix;
     public static Queue<Integer> qu = new LinkedList<>();
-    public static int[] flag;
+    public static boolean[] flag;
     public static int N,M;
 
     public static void main(String[] args) {
@@ -20,23 +20,23 @@ public class solution {
             matrix[vertex1][vertex2] = 1;
         }
 
-        flag = new int[N+1];
+        flag = new boolean[N+1];
 
         bfs(1);
     }
 
     public static void bfs(int start) {
         qu.offer(start);
-        flag[start] = 1;
+        flag[start] = true;
         int result = 0;
 
         while(!qu.isEmpty()) {
             start = qu.poll();
 
             for (int i = 0; i < flag.length; i++) {
-                if(flag[i]!=1 && matrix[start][i] ==1){
+                if(!flag[i] && matrix[start][i] ==1){
                     qu.offer(i);
-                    flag[i] = 1;
+                    flag[i] = true;
                     result++;
                 }
             }
