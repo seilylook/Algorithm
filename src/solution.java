@@ -40,22 +40,27 @@ class solution {
             }
         }
 
-        qu = new LinkedList<>();
         flag = new boolean[width];
+        int area = 0;
+        ArrayList<Integer> list = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 if(matrix[i][j] != 1) {
-                    bfs(i,j);
+                    list.add(bfs(i,j));
+                    area++;
                 }
             }
         }
+        Collections.sort(list);
+        System.out.println(area);
 
     }
 
-    private static void bfs(int a, int b) {
-        int result =0;
+    private static int bfs(int a, int b) {
+        qu = new LinkedList<>();
         qu.add(new Pos(a,b));
+        int sum =0;
         matrix[a][b] = 1;
 
         while(!qu.isEmpty()) {
@@ -67,13 +72,13 @@ class solution {
                 int xdir = temp_x + dx[i];
                 int ydir = temp_y + dy[i];
 
-                if(matrix[xdir][ydir] != 1) {
+                if(temp_x < 0 || temp_x >= height || temp_y <0 || temp_y>= width && matrix[xdir][ydir] != 1) {
                     qu.add(new Pos(xdir,ydir));
                     matrix[xdir][ydir] = 1;
-                    result++;
+                    sum++;
                 }
             }
         }
-        System.out.println(result+1);
+        return sum+1;
     }
 }
