@@ -13,7 +13,7 @@ public class solution {
         N = Integer.parseInt(br.readLine());
         M = Integer.parseInt(br.readLine());
 
-        matrix = new int[N][M];
+        matrix = new int[N+1][N+1];
 
         for (int i = 0; i < M; i++) {
             int vertex1 = Integer.parseInt(br.readLine());
@@ -22,10 +22,10 @@ public class solution {
             matrix[vertex1][vertex2] = 1;
         }
 
-        flag = new boolean[N];
+        flag = new boolean[N+1];
         int result = 0;
 
-        for (int i = 0; i <= N; i++) {
+        for (int i = 1; i <= N; i++) {
             if(!flag[i]){
                 dfs(i);
                 result++;
@@ -39,7 +39,8 @@ public class solution {
             return;
         }
         else{
-            for (int i=0; i<=N; i++){
+            flag[start] = true;
+            for (int i=1; i<=N; i++){
                 if(matrix[start][i] == 1){
                     dfs(i);
                 }
