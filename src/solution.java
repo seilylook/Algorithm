@@ -6,6 +6,7 @@ public class solution {
     static int N,M;
     static int[][] matrix;
     static boolean[] flag;
+    static Queue<Integer> qu;
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -25,12 +26,38 @@ public class solution {
         flag = new boolean[N+1];
         int result = 0;
 
-        for (int i = 1; i <= N; i++) {
-            if(!flag[i]){
-                dfs(i);
-                result++;
+        qu = new LinkedList<>();
+
+        bfs(1);
+
+//        for (int i = 1; i <= N; i++) {
+//            if(!flag[i]){
+//                dfs(i);
+//                result++;
+//            }
+//        }
+//        System.out.println(result);
+
+
+    }
+
+    public static void bfs(int start){
+        qu.offer(start);
+        flag[start] = true;
+        int result = 0;
+
+        while(!qu.isEmpty()) {
+            start = qu.poll();
+
+            for (int i=0; i< flag.length; i++){
+                if(!flag[i] && matrix[start][i] == 1){
+                    qu.offer(i);
+                    flag[i] = true;
+                    result++;
+                }
             }
         }
+
         System.out.println(result);
     }
 
