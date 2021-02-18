@@ -22,6 +22,7 @@ public class solution {
     static int[] dy = {1,2,1,2,-1,-2,-1,-2};
     static int test;
     static int start_x, start_y, end_x, end_y;
+    static int count = 0;
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -33,7 +34,7 @@ public class solution {
             matrix = new int[line][line];
             visited = new boolean[line][line];
 
-            qu = new LinkedList<>();
+            qu = new LinkedList<Pos>();
 
             StringTokenizer st = new StringTokenizer(br.readLine());
             start_x = Integer.parseInt(st.nextToken());
@@ -67,10 +68,11 @@ public class solution {
                 int x2 = x1 + dx[i];
                 int y2 = y1 + dy[i];
 
-                if(x2 >= 0 && x2<line && y2>=0 && y2<line){
+                if(x2 >= 0 && x2<line && y2>=0 && y2<line && !visited[x2][y2]){
                     qu.add(new Pos(x2, y2));
                     visited[x2][y2] = true;
                     matrix[x2][y2] = matrix[x1][y1] + 1;
+                    count++;
                 }
             }
         }
